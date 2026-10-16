@@ -1,0 +1,582 @@
+/* ---------- Project detail page ---------- */
+.project-page {
+    max-width: 68rem;
+    margin: 0 auto;
+    padding: 5.5rem 2rem 4rem;
+}
+
+/* The only navigation on this page: a floating Back button */
+.back-btn {
+    position: fixed;
+    top: 1.4rem;
+    left: 1.6rem;
+    z-index: 1000;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(10, 10, 10, 0.75);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: #e7e7e7;
+    font: inherit;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.back-btn:hover,
+.back-btn:focus-visible {
+    border-color: var(--c1);
+    box-shadow: 0 0 20px color-mix(in srgb, var(--c1) 35%, transparent);
+    outline: none;
+}
+
+.back-btn:hover svg {
+    transform: translateX(-3px);
+}
+
+.back-btn svg {
+    transition: transform 0.3s ease;
+}
+
+/* ---------- Intro ---------- */
+.pp-hero {
+    position: relative;
+    margin-bottom: 4rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Soft glow in the project's color behind the title */
+.pp-hero::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: -6rem;
+    left: -10rem;
+    width: 34rem;
+    height: 26rem;
+    background: radial-gradient(circle, color-mix(in srgb, var(--c1) 22%, transparent), transparent 65%);
+    pointer-events: none;
+}
+
+.pp-hero-text {
+    max-width: 48rem;
+}
+
+.pp-eyebrow {
+    display: inline-block;
+    padding: 0.3rem 1rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--c1) 65%, white);
+    border: 1px solid color-mix(in srgb, var(--c1) 55%, transparent);
+}
+
+.pp-hero h1 {
+    margin: 1rem 0 0.6rem;
+    font-size: 2.6rem;
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: 0.03em;
+    text-shadow: 0 0 10px rgba(128, 128, 128, 0.4);
+}
+
+.pp-tagline {
+    font-size: 1.1rem;
+    color: color-mix(in srgb, var(--c1) 55%, white);
+}
+
+.pp-description {
+    margin-top: 1rem;
+    color: #a7a7a7;
+    line-height: 1.7;
+}
+
+.pp-highlights {
+    list-style: none;
+    margin-top: 1.4rem;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.55rem 1.5rem;
+}
+
+.pp-highlights li {
+    display: flex;
+    gap: 0.6rem;
+    align-items: baseline;
+    font-size: 0.92rem;
+    color: #cfcfcf;
+}
+
+.pp-highlights svg {
+    flex-shrink: 0;
+    font-size: 0.75rem;
+    color: var(--c1);
+}
+
+.pp-repo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1.6rem;
+    padding: 0.7rem 1.4rem;
+    border-radius: 50px;
+    background: #e7e7e7;
+    color: #000;
+    font-size: 0.92rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.pp-repo:hover {
+    background: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.25);
+}
+
+/* ---------- Content blocks ---------- */
+.pp-body {
+    display: grid;
+    gap: 3.5rem;
+}
+
+/* Let wide children (the diagram) scroll inside their box instead of stretching the page */
+.pp-body > * {
+    min-width: 0;
+}
+
+.pp-block h2 {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin-bottom: 1.3rem;
+    font-size: 1.35rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+}
+
+.pp-block h2::before {
+    content: "";
+    width: 4px;
+    height: 1.1em;
+    border-radius: 2px;
+    background: linear-gradient(to bottom, color-mix(in srgb, var(--c1) 60%, white), var(--c1));
+}
+
+/* Architecture */
+.pp-diagram {
+    padding: 1.4rem;
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background:
+        radial-gradient(60% 80% at 50% 0%, color-mix(in srgb, var(--c1) 10%, transparent), transparent),
+        #0a0a0a;
+}
+
+.pp-diagram figcaption {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: #8a8a8a;
+    line-height: 1.6;
+}
+
+.arch-diagram {
+    display: block;
+    width: 100%;
+    height: auto;
+    font-family: inherit;
+}
+
+.arch-group {
+    fill: rgba(255, 255, 255, 0.015);
+    stroke: rgba(255, 255, 255, 0.18);
+    stroke-dasharray: 6 6;
+}
+
+.arch-group-label {
+    fill: #8a8a8a;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.arch-node {
+    fill: #141414;
+    stroke: #333;
+    stroke-width: 1.2;
+}
+
+.arch-node-label {
+    fill: #f0f0f0;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.arch-node-sub {
+    fill: #8f8f8f;
+    font-size: 11px;
+}
+
+/* Arrows "march" slowly in their direction */
+.arch-edge {
+    stroke: var(--accent);
+    stroke-width: 1.6;
+    stroke-dasharray: 7 5;
+    opacity: 0.85;
+    animation: archFlow 1.2s linear infinite;
+}
+
+.arch-edge.dashed {
+    stroke: #6a6a6a;
+    stroke-dasharray: 3 5;
+    animation: none;
+}
+
+@keyframes archFlow {
+    to { stroke-dashoffset: -12; }
+}
+
+.arch-edge-label-bg {
+    fill: #0a0a0a;
+    stroke: rgba(255, 255, 255, 0.12);
+}
+
+.arch-edge-label {
+    fill: #c9c9c9;
+    font-size: 10.5px;
+}
+
+/* Stack */
+.pp-stack {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+    gap: 1rem;
+}
+
+.pp-stack-group {
+    padding: 1.1rem 1.2rem;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: linear-gradient(160deg, #111, #080808);
+}
+
+.pp-stack-group h3 {
+    margin-bottom: 0.8rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #9a9a9a;
+}
+
+.pp-stack-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.pp-stack-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.35rem 0.8rem;
+    border-radius: 50px;
+    font-size: 0.82rem;
+    color: #dcdcdc;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.02);
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.pp-stack-item svg {
+    color: var(--brand);
+    font-size: 1rem;
+}
+
+.pp-stack-item:hover {
+    border-color: color-mix(in srgb, var(--brand) 60%, transparent);
+    background: color-mix(in srgb, var(--brand) 8%, transparent);
+}
+
+/* Flow: numbered timeline */
+.pp-flow {
+    list-style: none;
+    position: relative;
+    display: grid;
+    gap: 0.9rem;
+}
+
+.pp-flow::before {
+    content: "";
+    position: absolute;
+    left: 1.05rem;
+    top: 1rem;
+    bottom: 1rem;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--c1), color-mix(in srgb, var(--c1) 10%, transparent));
+}
+
+.pp-flow li {
+    position: relative;
+    display: grid;
+    grid-template-columns: 2.2rem 1fr;
+    gap: 1rem;
+    align-items: start;
+}
+
+.pp-flow-num {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 50%;
+    font-size: 0.85rem;
+    font-weight: 600;
+    background: #000;
+    border: 2px solid var(--c1);
+    color: #fff;
+    box-shadow: 0 0 14px color-mix(in srgb, var(--c1) 45%, transparent);
+}
+
+.pp-flow li > div {
+    padding: 0.85rem 1.1rem;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.pp-flow h3 {
+    font-size: 0.98rem;
+    font-weight: 600;
+}
+
+.pp-flow p {
+    margin-top: 0.25rem;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: #a7a7a7;
+}
+
+/* Learned */
+.pp-learned {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr));
+    gap: 0.9rem;
+}
+
+.pp-learned-card {
+    display: flex;
+    gap: 0.9rem;
+    padding: 1rem 1.1rem;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: linear-gradient(160deg, #111, #080808);
+    transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.pp-learned-card:hover {
+    border-color: color-mix(in srgb, var(--c1) 50%, transparent);
+    transform: translateY(-3px);
+}
+
+.pp-learned-icon {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 1.8rem;
+    height: 1.8rem;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    color: #fff;
+    background: linear-gradient(135deg, var(--c1), var(--c2));
+}
+
+.pp-learned-card p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #cfcfcf;
+}
+
+/* Challenges: problem → solution */
+.pp-challenges {
+    display: grid;
+    gap: 1rem;
+}
+
+.pp-challenge {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.pp-problem,
+.pp-solution {
+    padding: 1.1rem 1.25rem;
+}
+
+.pp-problem {
+    background: rgba(248, 113, 113, 0.05);
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.pp-solution {
+    background: rgba(74, 222, 128, 0.04);
+}
+
+.pp-tag {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    padding: 0.12rem 0.6rem;
+    border-radius: 50px;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.pp-tag.problem {
+    color: #fca5a5;
+    border: 1px solid rgba(248, 113, 113, 0.4);
+}
+
+.pp-tag.solution {
+    color: #86efac;
+    border: 1px solid rgba(74, 222, 128, 0.4);
+}
+
+.pp-challenge p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #cfcfcf;
+}
+
+/* Footer: back + next project */
+.pp-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.pp-footer-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    border: 1px solid #a7a7a7;
+    background: transparent;
+    color: #e7e7e7;
+    font: inherit;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.pp-footer-back:hover {
+    background: #a7a7a7;
+    color: #000;
+}
+
+.pp-next {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.2rem;
+    text-decoration: none;
+    color: inherit;
+}
+
+.pp-next span {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #8a8a8a;
+}
+
+.pp-next strong {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+    color: color-mix(in srgb, var(--c1) 60%, white);
+}
+
+.pp-next:hover svg {
+    transform: translateX(4px);
+}
+
+.pp-next svg {
+    transition: transform 0.3s ease;
+}
+
+/* ---------- Smaller screens ---------- */
+@media (max-width: 900px) {
+    .pp-highlights {
+        grid-template-columns: 1fr;
+    }
+    .pp-challenge {
+        grid-template-columns: 1fr;
+    }
+    .pp-problem {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    /* Wide diagrams scroll sideways instead of shrinking to unreadable */
+    .pp-diagram {
+        overflow-x: auto;
+    }
+    .arch-diagram {
+        min-width: 760px;
+    }
+}
+
+@media (max-width: 600px) {
+    .project-page {
+        padding: 5rem 1rem 3rem;
+    }
+    /* Dark fade at the top so text scrolling under the Back button stays out of the way */
+    .project-page::before {
+        content: "";
+        position: fixed;
+        z-index: 999;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4.5rem;
+        background: linear-gradient(to bottom, #000 55%, transparent);
+        pointer-events: none;
+    }
+    .pp-hero h1 {
+        font-size: 2rem;
+    }
+    .back-btn {
+        top: 1rem;
+        left: 1rem;
+    }
+    .pp-footer {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .pp-next {
+        align-items: flex-start;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .arch-edge {
+        animation: none;
+    }
+}
