@@ -33,7 +33,7 @@ function Hero() {
               onClick={() => {
                 const link = document.createElement('a');
                 // file in public/, inside the site folder (BASE_URL = "/Portfolio/")
-                link.href = `${import.meta.env.BASE_URL}Danijell_Nithilanayagam_SE.pdf`;
+                link.href = `${import.meta.env.BASE_URL}Danijella_Nithilanayagam_SE.pdf`;
                 link.download = 'Danijella_Nithilanayagam_Resume.pdf'; // name it's saved as
                 document.body.appendChild(link);
                 link.click();
