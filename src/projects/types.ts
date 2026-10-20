@@ -55,7 +55,7 @@ export type Project = {
   accent2: string;           // second color for the cover gradient
   coverIcon: IconType;       // faint background logo on the card cover
   highlights: string[];      // 3–4 short feature points
-  mainStack?: string[];      // chips on the home card; falls back to the first stack items
+  mainStack: string[];       // chips on the home card
   stack: { group: string; items: StackItem[] }[];
   diagram: Diagram;
   diagramCaption: string;

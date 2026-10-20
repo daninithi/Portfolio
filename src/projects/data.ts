@@ -57,6 +57,7 @@ export const PROJECTS: Project[] = [
       "Strategy marketplace with Stripe checkout and subscriptions",
       "Gemini AI assistant inside an in-browser code editor",
     ],
+    mainStack: ["Spring Boot", "FastAPI", "Next.js", "TypeScript", "Tailwind CSS", "PostgreSQL"],
     stack: [
       {
         group: "Backend (Java)",
@@ -183,6 +184,7 @@ export const PROJECTS: Project[] = [
       "Brute-force protection: account lockout and per-IP rate limiting",
       "Database per service, Feign calls between services",
     ],
+    mainStack: ["Java", "Spring Security", "JWT", "Spring Cloud Gateway", "OpenFeign"],
     stack: [
       {
         group: "Core",

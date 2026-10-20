@@ -32,15 +32,9 @@ function Projects() {
 
             <div className="project-card-body">
               <h3>{p.title}</h3>
-              <p className="project-card-tagline">{p.tagline}</p>
               <div className="project-card-footer">
                 <div className="project-card-chips">
-                  {(p.mainStack ??
-                    p.stack
-                      .flatMap((g) => g.items)
-                      .slice(0, 3)
-                      .map((s) => s.name)
-                  ).map((name) => (
+                  {p.mainStack.map((name) => (
                     <span key={name}>{name}</span>
                   ))}
                 </div>
