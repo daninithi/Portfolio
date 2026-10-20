@@ -382,7 +382,7 @@ export const PROJECTS: Project[] = [
       "Liveness and readiness probes so traffic waits for the database",
       "One manifest base with Kustomize overlays for EC2 and EKS",
     ],
-    mainStack: ["Docker", "Kubernetes", "Docker Compose"],
+    mainStack: ["Docker", "Kubernetes", "Docker Compose", "nginx"],
     stack: [
       {
         group: "Application",
