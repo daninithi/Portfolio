@@ -184,7 +184,7 @@ export const PROJECTS: Project[] = [
       "Brute-force protection: account lockout and per-IP rate limiting",
       "Database per service, Feign calls between services",
     ],
-    mainStack: ["Java", "Spring Security", "JWT", "Spring Cloud Gateway", "OpenFeign"],
+    mainStack: ["Spring Boot", "Spring Security", "JWT", "Spring Cloud Gateway", "OpenFeign"],
     stack: [
       {
         group: "Core",
