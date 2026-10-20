@@ -1,10 +1,13 @@
-import { FaAws, FaDatabase, FaGlobe, FaKey, FaLock, FaRobot, FaServer, FaUserShield, FaUsers } from "react-icons/fa";
+import { FaAws, FaCode, FaDatabase, FaGlobe, FaKey, FaLock, FaRobot, FaServer, FaUserShield, FaUsers } from "react-icons/fa";
 import {
   SiApachemaven,
   SiBinance,
   SiDocker,
   SiExpress,
   SiFastapi,
+  SiGit,
+  SiGithub,
+  SiGithubactions,
   SiGmail,
   SiGoogle,
   SiGooglegemini,
@@ -279,6 +282,7 @@ export const PROJECTS: Project[] = [
       "Structured JSON output (subject + body) enforced by a schema",
       "Emails sent from the user's own Gmail account",
     ],
+    mainStack: ["React", "Node.js", "Express", "Google OAuth 2.0", "Gmail API", "Gemini 2.5 Flash"],
     stack: [
       {
         group: "Frontend",
@@ -373,6 +377,7 @@ export const PROJECTS: Project[] = [
       "Liveness and readiness probes so traffic waits for the database",
       "One manifest base with Kustomize overlays for EC2 and EKS",
     ],
+    mainStack: ["Docker", "Kubernetes", "Docker Compose"],
     stack: [
       {
         group: "Application",
@@ -471,6 +476,7 @@ export const PROJECTS: Project[] = [
       "No orphan files: S3 upload is undone if saving metadata fails",
       "Live health checks with a clear banner when S3 or the DB is down",
     ],
+    mainStack: ["AWS S3", "MongoDB", "AWS IAM"],
     stack: [
       {
         group: "Frontend",
@@ -548,6 +554,104 @@ export const PROJECTS: Project[] = [
       { problem: "Uploads over 1 MB failed with \"413 Request Entity Too Large\".", solution: "nginx has a 1 MB body limit by default, so I raised client_max_body_size to 25 MB (above the API's own 20 MB limit) and turned off request buffering." },
       { problem: "If saving to MongoDB failed after an upload, the file stayed in S3 forever, and same-named files could overwrite each other.", solution: "Each file gets a UUID-based key, and the API deletes the S3 object if the metadata save fails." },
       { problem: "The app needed AWS keys, but they must never end up in Git or the image.", solution: "Keys are read only from environment variables, .env is git- and docker-ignored, and the app still runs in a safe 'S3 not configured' mode without them." },
+    ],
+  },
+
+  // ------------------------------------------------------------------ 6
+  {
+    slug: "portfolio-ec2-cicd",
+    title: "Portfolio Deployment on AWS EC2",
+    tagline: "This portfolio, packaged with Docker and shipped by a GitHub Actions CI/CD pipeline to AWS EC2.",
+    description:
+      "A deployment project for my own portfolio site. Every push to main starts a GitHub Actions CI/CD pipeline: it type-checks and builds the React app, builds a multi-stage Docker image (Node to build, nginx to serve) and pushes it to Docker Hub. On an AWS EC2 server, K3s runs that image as two copies behind a NodePort service. It lives in its own repo because the main portfolio repo is set up for GitHub Pages, not for a server.",
+    repo: "https://github.com/daninithi/Portifolio",
+    accent: "#2088ff",
+    accent2: "#ff9900",
+    coverIcon: SiGithubactions,
+    highlights: [
+      "CI/CD pipeline in GitHub Actions on every push to main",
+      "Multi-stage Docker image: Node builds the site, nginx serves it",
+      "Image published to Docker Hub, credentials kept in GitHub Secrets",
+      "Runs on AWS EC2 with K3s: 2 replicas behind a NodePort service",
+    ],
+    mainStack: ["AWS EC2", "Docker", "GitHub Actions", "CI/CD", "nginx"],
+    stack: [
+      {
+        group: "CI/CD",
+        items: [
+          { name: "GitHub Actions", icon: SiGithubactions, color: "#2088ff" },
+          { name: "Docker Hub", icon: SiDocker, color: "#2496ed" },
+          { name: "GitHub Secrets", icon: FaKey, color: "#a7a7a7" },
+          { name: "Git", icon: SiGit, color: "#f05032" },
+        ],
+      },
+      {
+        group: "Containers & hosting",
+        items: [
+          { name: "Docker (multi-stage)", icon: SiDocker, color: "#2496ed" },
+          { name: "nginx", icon: SiNginx, color: "#22b14c" },
+          { name: "Kubernetes / K3s", icon: SiKubernetes, color: "#5b8def" },
+          { name: "AWS EC2", icon: FaAws, color: "#ff9900" },
+        ],
+      },
+      {
+        group: "The site",
+        items: [
+          { name: "React 19", icon: SiReact, color: "#61dafb" },
+          { name: "TypeScript", icon: SiTypescript, color: "#3178c6" },
+          { name: "Vite", icon: SiVite, color: "#a78bfa" },
+        ],
+      },
+    ],
+    diagram: {
+      width: 1000,
+      height: 460,
+      groups: [{ x: 220, y: 240, w: 760, h: 200, label: "AWS EC2 · K3s", color: "#ff9900" }],
+      nodes: [
+        { id: "dev", x: 20, y: 40, w: 150, h: 66, label: "Developer", sub: "git push", icon: FaCode, color: "#a7a7a7" },
+        { id: "repo", x: 230, y: 40, w: 170, h: 66, label: "GitHub repo", sub: "main branch", icon: SiGithub, color: "#ffffff" },
+        { id: "ci", x: 460, y: 30, w: 230, h: 86, label: "GitHub Actions", sub: "npm build · docker build", icon: SiGithubactions, color: "#2088ff" },
+        { id: "hub", x: 760, y: 40, w: 220, h: 66, label: "Docker Hub", sub: "portfolio:latest", icon: SiDocker, color: "#2496ed" },
+        { id: "secrets", x: 470, y: 160, w: 210, h: 54, label: "GitHub Secrets", sub: "Docker Hub login", icon: FaKey, color: "#a7a7a7" },
+        { id: "user", x: 20, y: 310, w: 150, h: 70, label: "Browser", sub: "EC2-IP:30080", icon: FaGlobe, color: "#a7a7a7" },
+        { id: "svc", x: 470, y: 310, w: 200, h: 70, label: "Service", sub: "NodePort :30080", icon: SiKubernetes, color: "#5b8def" },
+        { id: "pods", x: 770, y: 310, w: 190, h: 70, label: "Portfolio ×2", sub: "nginx pods · :80", icon: SiNginx, color: "#22b14c" },
+      ],
+      edges: [
+        { from: "dev", to: "repo", label: "push" },
+        { from: "repo", to: "ci", label: "trigger" },
+        { from: "ci", to: "hub", label: "push image" },
+        { from: "secrets", to: "ci", dashed: true, vertical: true },
+        { from: "hub", to: "pods", label: "pull image", vertical: true },
+        { from: "user", to: "svc", label: "HTTP" },
+        { from: "svc", to: "pods", label: "app: portfolio" },
+      ],
+    },
+    diagramCaption:
+      "A push to main starts the GitHub Actions workflow. It builds the site, logs in to Docker Hub with secrets, then builds and pushes the image. On EC2, K3s pulls that image and runs two nginx pods; a NodePort service on port 30080 sends visitors to either pod. An SSH deploy step is already written into the workflow, ready to switch on so updates go live with no manual steps.",
+    flow: [
+      { title: "Push code", detail: "A git push to the main branch starts the GitHub Actions workflow automatically." },
+      { title: "Build and check", detail: "The pipeline checks out the code, sets up Node 20, runs npm install and npm run build. The build runs tsc first, so a type error stops the pipeline early." },
+      { title: "Log in to Docker Hub", detail: "docker/login-action signs in using DOCKER_USERNAME and DOCKER_PASSWORD from GitHub Secrets, so no password is in the code." },
+      { title: "Build the image", detail: "A multi-stage Dockerfile builds the site in node:20-alpine, then copies only the dist folder and nginx.conf into a small nginx:alpine image." },
+      { title: "Push the image", detail: "The image is pushed to Docker Hub as <user>/portfolio:latest, ready for any server to pull." },
+      { title: "Prepare the server", detail: "An AWS EC2 instance runs single-node K3s, and its security group opens the NodePort so visitors can reach the site." },
+      { title: "Deploy on K3s", detail: "A Deployment runs 2 replicas of the image with imagePullPolicy: Always, and a NodePort service exposes them on port 30080." },
+      { title: "Ship an update", detail: "After a new push, kubectl rollout restart deployment portfolio pulls the fresh image and replaces the pods one by one." },
+      { title: "Next: full auto-deploy", detail: "An SSH step (appleboy/ssh-action) using EC2 host and key secrets is written into the workflow, so the restart can run from the pipeline itself." },
+    ],
+    learned: [
+      "What CI/CD means in practice: CI builds and checks every push, CD delivers a ready-to-run image.",
+      "Writing GitHub Actions workflows: triggers, jobs, steps, ready-made actions and secrets.",
+      "Multi-stage Docker builds, so the final image has nginx and the site but no Node or source code.",
+      "Serving a single-page app with nginx: falling back to index.html and caching built assets for a year.",
+      "Running a container on EC2 with K3s: Deployments, replicas, NodePort services and rolling restarts.",
+      "Keeping credentials out of the repo with GitHub Secrets.",
+    ],
+    challenges: [
+      { problem: "The workflow never ran after I pushed it.", solution: "The file was in k3s/.github/workflow/. GitHub only reads .github/workflows/ (plural) at the root of the repo, so I renamed the folder and moved it there." },
+      { problem: "With nginx, any page address other than / could return a 404, because the page routes live in the React app, not on disk.", solution: "I added try_files $uri $uri/ /index.html to nginx.conf, so unknown paths load the app and React shows the right page." },
+      { problem: "Every build uses the same :latest tag, so Kubernetes can't tell that a new image exists and keeps the old one.", solution: "I set imagePullPolicy: Always and use kubectl rollout restart, so new pods always pull the newest image." },
     ],
   },
 ];

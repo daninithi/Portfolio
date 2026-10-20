@@ -1,11 +1,11 @@
 /* ---------- Home: Projects grid ---------- */
-/* Featured card fills the left column; the other four sit in a 2×2 grid.
+/* Six equal cards in a 3×2 grid.
    The grid stretches to fill the rest of the screen under the heading. */
 .projects-grid {
     flex: 1;
     min-height: 0;
     display: grid;
-    grid-template-columns: 1.35fr 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 1fr 1fr;
     gap: 1rem;
 }
@@ -24,9 +24,6 @@
     transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
 }
 
-.project-card.featured {
-    grid-row: span 2;
-}
 
 .project-card:hover,
 .project-card:focus-visible {
@@ -52,9 +49,6 @@
     line-height: 1.3;
 }
 
-.project-card.featured h3 {
-    font-size: 1.35rem;
-}
 
 .project-card-tagline {
     margin-top: 0.3rem;
@@ -67,10 +61,6 @@
     overflow: hidden;
 }
 
-.project-card.featured .project-card-tagline {
-    font-size: 0.9rem;
-    -webkit-line-clamp: 3;
-}
 
 .project-card-footer {
     display: flex;
@@ -173,9 +163,6 @@
     .project-card-tagline {
         -webkit-line-clamp: 1;
     }
-    .project-card.featured .project-card-tagline {
-        -webkit-line-clamp: 2;
-    }
 }
 
 /* ---------- Smaller screens: normal stacked cards ---------- */
@@ -184,16 +171,9 @@
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: none;
     }
-    .project-card.featured {
-        grid-row: auto;
-        grid-column: 1 / -1;
-    }
     .project-card .project-cover {
         flex: none;
         height: 150px;
-    }
-    .project-card.featured .project-cover {
-        height: 200px;
     }
 }
 

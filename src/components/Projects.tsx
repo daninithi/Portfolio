@@ -3,7 +3,7 @@ import ProjectCover from "../projects/ProjectCover";
 import { PROJECTS } from "../projects/data";
 import "./Projects.css";
 
-// Home page: one big featured card on the left, four smaller ones on the right.
+// Home page: six equal project cards in a grid.
 // Clicking a card opens that project's own page (#/projects/<slug>).
 function Projects() {
   return (
@@ -22,7 +22,7 @@ function Projects() {
             key={p.slug}
             href={`#/projects/${p.slug}`}
             onClick={() => sessionStorage.setItem("returnToProjects", "1")}
-            className={`project-card ${i === 0 ? "featured" : ""}`}
+            className="project-card"
             style={{ "--c1": p.accent } as React.CSSProperties}
             data-aos="fade-up"
             data-aos-duration="800"
@@ -35,12 +35,14 @@ function Projects() {
               <p className="project-card-tagline">{p.tagline}</p>
               <div className="project-card-footer">
                 <div className="project-card-chips">
-                  {p.stack
-                    .flatMap((g) => g.items)
-                    .slice(0, i === 0 ? 5 : 3)
-                    .map((s) => (
-                      <span key={s.name}>{s.name}</span>
-                    ))}
+                  {(p.mainStack ??
+                    p.stack
+                      .flatMap((g) => g.items)
+                      .slice(0, 3)
+                      .map((s) => s.name)
+                  ).map((name) => (
+                    <span key={name}>{name}</span>
+                  ))}
                 </div>
                 <span className="project-card-cta">
                   View <FaArrowRight aria-hidden="true" />
