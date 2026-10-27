@@ -19,13 +19,11 @@ function Hero() {
         data-aos-duration="1500"
       >
         <div className="tag-box">
-          <div className="tag">Software Engineer | Backend &amp; Cloud</div>
+          <div className="tag">Software Engineer | Backend &amp; Devops</div>
         </div>
         <h1 className="title">Hi, I'm Danijella</h1>
         <p className="description">
-          Associate Software Engineer at Protonest IoT and Computer Science graduate from the
-          University of Colombo School of Computing. I build backend services and REST APIs with
-          Spring Boot and microservices, and ship them to AWS using Docker and CI/CD pipelines.
+          Associate Software Engineer specializing in backend development and cloud technologies. I build scalable REST APIs and microservices using Spring Boot and deploy reliable applications on AWS using Docker and CI/CD pipelines. I'm passionate about distributed systems, cloud infrastructure, and developing efficient, reliable software that solves real-world problems.
         </p>
         <div className="buttons">
             <button 
